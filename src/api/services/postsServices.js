@@ -4,7 +4,6 @@ const { GET_POSTS, ADD_POSTS, UPDATE_POST, DELETING_POST, axiosInstance: api} = 
 
 const PostServices = {
     getPosts: () => {
-        console.log('wewr')
         return api.get(GET_POSTS)
     },
     addPost: (payload) => {

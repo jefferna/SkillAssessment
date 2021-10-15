@@ -13,8 +13,8 @@ const HomeScreen = () => {
     const {fetchedData} = useSelector(state => state.postsReducer)
 
 
-    const handleCardPress = () => {
-        console.log("Card Pressed")
+    const handleCardPress = (id) => {
+        console.log("Card Pressed", id)
     }
 
     // const a = async () => {
@@ -38,7 +38,7 @@ const HomeScreen = () => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             {
                 fetchedData.map((item, index) => {
                     return (

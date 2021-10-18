@@ -2,12 +2,14 @@ import React from 'react';
 
 import {TouchableOpacity, Text, View} from 'react-native';
 
-const PostCard = ({item, id, onPress}) => {
+const PostCard = ({item, key, onPress}) => {
   const handlePress = () => {
-    onPress(id);
+    onPress(item);
   };
+
+  // console.log('Post Card: ', item);
   return (
-    <TouchableOpacity key={id} onPress={handlePress}>
+    <TouchableOpacity key={key} onPress={handlePress}>
       <View
         style={{
           marginBottom: 10,
@@ -26,13 +28,24 @@ const PostCard = ({item, id, onPress}) => {
         <View
           style={{
             height: 30,
-            backgroundColor: 'teal',
             flexDirection: 'row',
             flex: 1,
             justifyContent: 'space-evenly',
           }}>
           <View style={{backgroundColor: 'red', width: '50%'}}></View>
-          <View style={{backgroundColor: 'blue', width: '50%'}}></View>
+          <View
+            style={{
+              width: '50%',
+              flex: 1,
+              flexDirection: 'row-reverse',
+              paddingLeft: 10,
+              paddingTop: 10,
+              borderColor: 'gray',
+              borderStyle: 'solid',
+              borderWidth: 1,
+            }}>
+            <Text>1234 Comments</Text>
+          </View>
         </View>
         <View
           style={{

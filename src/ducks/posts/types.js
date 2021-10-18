@@ -1,7 +1,8 @@
 export type PostsState = {
     isFetchingData: boolean,
     isFetchingDataError: boolean,
-    fetchedData: any
+    fetchedData: any,
+    fetchedComments: any
 }
 
 export type PostsActions = 
@@ -14,4 +15,15 @@ export type PostsActions =
     }
     |{
         type: 'GET_POSTS_FAILED'
+    }
+    |{
+        type: 'GET_COMMENTS_REQUEST'
+        payload: number
+    }
+    | {
+        type: 'GET_COMMENTS_SUCCESS'
+        payload: any
+    }
+    | {
+        type: 'GET_COMMENTS_FAILED'
     }

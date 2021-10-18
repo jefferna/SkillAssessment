@@ -5,13 +5,15 @@ import {Provider} from 'react-redux';
 
 import store from './src/ducks/store';
 import HomeScreen from './src/screens/HomeSreen/HomeScreen';
+import PostsStackNavigator from './src/navigations/PostsStackNavigator';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App: () => Node = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView>
-        <HomeScreen />
-      </SafeAreaView>
+      <NavigationContainer>
+        <PostsStackNavigator />
+      </NavigationContainer>
     </Provider>
   );
 };

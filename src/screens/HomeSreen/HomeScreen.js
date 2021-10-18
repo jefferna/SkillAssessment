@@ -1,53 +1,45 @@
-import React, { useEffect } from 'react';
-import { ScrollView, Text } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux'
+import React, {useEffect} from 'react';
+import {Button, ScrollView, Text, SafeAreaView, FlatList} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import PostCard from './PostCard';
 
-import constants from '../../api/utils'
+import constants from '../../api/utils';
 
-import { getPostsRequest } from '../../ducks/posts/actionCreators';
+import {getPostsRequest} from '../../ducks/posts/actionCreators';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {fetchedData} = useSelector((state) => state.postsReducer);
 
-    const dispatch = useDispatch()
-    const {fetchedData} = useSelector(state => state.postsReducer)
+  const handleCardPress = (post) => {
+    navigation.navigate('Comments', {post});
+  };
 
+  useEffect(() => {
+    dispatch(getPostsRequest());
+  }, []);
 
-    const handleCardPress = (id) => {
-        console.log("Card Pressed", id)
-    }
+  if (!fetchedData) {
+    return <Text>Empty</Text>;
+  }
 
-    // const a = async () => {
-    //     const {data} = await constants.axiosInstance.get(constants.GET_POSTS)
+  const Card = ({item}) => {
+    return <PostCard key={item.id} item={item} onPress={handleCardPress} />;
+  };
 
-    //     console.log(data)
-    // }
-
-    useEffect(() => {
-
-        // a()
-        dispatch(getPostsRequest())
-    }, [])
-
-    if (!fetchedData) {
-        return (
-            <Text>
-                Empty
-            </Text>
-        )
-    }
-
-    return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            {
-                fetchedData.map((item, index) => {
-                    return (
-                        <PostCard item={item} id={index} onPress={handleCardPress}/>
-                    )
-                })
-            }
-        </ScrollView>
-    )
-}
+  return (
+    <SafeAreaView>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={fetchedData}
+        renderItem={Card}
+        maxToRenderPerBatch={10}
+        initialNumToRender={10}
+        updateCellsBatchingPeriod={10}
+        removeClippedSubviews={true}
+      />
+    </SafeAreaView>
+  );
+};
 
 export default HomeScreen;

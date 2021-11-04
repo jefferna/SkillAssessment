@@ -51,8 +51,6 @@ export const PerActionContainer = styled.View`
 
 export const CardContainer = styled.View`
     marginBottom: 10px
-    borderStyle: solid
-    borderWidth: 1px
     marginHorizontal: 10px
     flex-direction: column
 `;

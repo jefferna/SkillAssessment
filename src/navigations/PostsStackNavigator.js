@@ -11,7 +11,11 @@ const Stack = createNativeStackNavigator();
 const PostsStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen component={HomeScreen} name="Home" />
+      <Stack.Screen
+        component={HomeScreen}
+        name="Home"
+        options={{headerShown: false}}
+      />
       <Stack.Screen component={CommentsScreen} name="Comments" />
     </Stack.Navigator>
   );

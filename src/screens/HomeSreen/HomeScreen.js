@@ -6,6 +6,7 @@ import PostCard from './PostCard';
 import constants from '../../api/utils';
 
 import {getPostsRequest} from '../../ducks/posts/actionCreators';
+import Header from './Header';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const HomeScreen = ({navigation}) => {
         initialNumToRender={10}
         updateCellsBatchingPeriod={10}
         removeClippedSubviews={true}
+        ListHeaderComponent={<Header />}
       />
     </SafeAreaView>
   );
